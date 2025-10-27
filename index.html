@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChainPuzzles</title> <!-- Changed Title -->
+    <title>ChainPuzzles</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <style>
@@ -48,7 +48,7 @@
         <header>
             <div class="flex items-center justify-center mb-2">
                 <svg class="avax-logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32ZM13.8643 9.49281L19.2941 9.49281L23.7314 22.5072L18.3016 22.5072L16.8973 18.6738L9.2066 18.6738L7.8023 22.5072L2.37255 22.5072L13.8643 9.49281ZM16.0501 12.3392L11.5369 16.096L14.6133 16.096L16.0501 12.3392Z" fill="#E84142"/></svg>
-                <h1 class="text-3xl font-bold text-white tracking-tight">ChainPuzzles</h1> <!-- Changed H1 -->
+                <h1 class="text-3xl font-bold text-white tracking-tight">ChainPuzzles</h1>
             </div>
             <p class="text-gray-400">Mint your Scorecard NFT and prove your skill on-chain.</p>
         </header>
@@ -99,7 +99,6 @@
                     <!-- Difficulty Selection and Start Button -->
                     <div id="startArea" class="flex flex-col sm:flex-row gap-4 mb-4">
                         <select id="difficultySelect" class="w-full sm:w-2/3">
-                            <!-- Updated Option Text -->
                             <option value="0">Easy (1:00)</option>
                             <option value="1">Medium (0:35)</option>
                             <option value="2">Hard (0:15)</option>
@@ -138,12 +137,15 @@
 
     <script>
         // --- Configuration ---
-        const contractAddress = "0xadd982C885396d955A2178F7Bf2f03B0023F5AB3";
-        // ** ABI Corrected **
+        // Updated Contract Address for Mainnet
+        const contractAddress = "0xc62B2Bd84977a81292cA5E355Ec296Da130B0600";
+        // Updated ABI for Mainnet Contract
         const contractABI = [{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"enum ChainScorePuzzles.Difficulty","name":"_difficulty","type":"uint8"}],"name":"claimVictory","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"address","name":"owner","type":"address"}],"name":"ERC721IncorrectOwner","type":"error"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ERC721InsufficientApproval","type":"error"},{"inputs":[{"internalType":"address","name":"approver","type":"address"}],"name":"ERC721InvalidApprover","type":"error"},{"inputs":[{"internalType":"address","name":"operator","type":"address"}],"name":"ERC721InvalidOperator","type":"error"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"ERC721InvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"}],"name":"ERC721InvalidReceiver","type":"error"},{"inputs":[{"internalType":"address","name":"sender","type":"address"}],"name":"ERC721InvalidSender","type":"error"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ERC721NonexistentToken","type":"error"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"inputs":[],"name":"mintScorecard","outputs":[],"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[{"internalType":"enum ChainScorePuzzles.Difficulty","name":"_difficulty","type":"uint8"}],"name":"recordDefeat","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"},{"indexed":false,"internalType":"enum ChainScorePuzzles.Difficulty","name":"difficulty","type":"uint8"},{"indexed":false,"internalType":"uint256","name":"wins","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"losses","type":"uint256"}],"name":"ScoreUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"player","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ScorecardMinted","type":"event"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"newBaseURI","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"easyScores","outputs":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_player","type":"address"}],"name":"getScorecardId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"getScores","outputs":[{"components":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"internalType":"struct ChainScorePuzzles.ScoreData","name":"","type":"tuple"},{"components":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"internalType":"struct ChainScorePuzzles.ScoreData","name":"","type":"tuple"},{"components":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"internalType":"struct ChainScorePuzzles.ScoreData","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"hardScores","outputs":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"hasMinted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"mediumScores","outputs":[{"internalType":"uint256","name":"wins","type":"uint256"},{"internalType":"uint256","name":"losses","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MINT_PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"playerTokenId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
         
-        const fujiChainId = '0xa869';
-        const fujiExplorerUrl = 'https://testnet.snowtrace.io';
+        // Updated Chain ID for Mainnet
+        const avaxChainId = '0xa86a'; // 43114 in decimal
+        // Updated Explorer URL for Mainnet
+        const avaxExplorerUrl = 'https://snowtrace.io';
         const mintPriceHex = '0x16345785D8A0000'; // 0.1 AVAX in Hex Wei
 
         // --- DOM Elements ---
@@ -167,17 +169,17 @@
         const hardWins = document.getElementById('hardWins');
         const hardLosses = document.getElementById('hardLosses');
 
-        const startArea = document.getElementById('startArea'); // Added
+        const startArea = document.getElementById('startArea');
         const difficultySelect = document.getElementById('difficultySelect');
         const startPuzzleBtn = document.getElementById('startPuzzleBtn');
 
         const puzzleArea = document.getElementById('puzzleArea');
-        const timerDisplay = document.getElementById('timerDisplay'); // Added
-        const guessControl = document.getElementById('guessControl'); // Added
-        const guessInput = document.getElementById('guessInput');     // Added
-        const guessBtn = document.getElementById('guessBtn');         // Added
-        const gameFeedback = document.getElementById('gameFeedback'); // Added
-        const resultButtons = document.getElementById('resultButtons'); // Added (was puzzleText div before)
+        const timerDisplay = document.getElementById('timerDisplay');
+        const guessControl = document.getElementById('guessControl');
+        const guessInput = document.getElementById('guessInput');
+        const guessBtn = document.getElementById('guessBtn');
+        const gameFeedback = document.getElementById('gameFeedback');
+        const resultButtons = document.getElementById('resultButtons');
         const claimVictoryBtn = document.getElementById('claimVictoryBtn');
         const recordDefeatBtn = document.getElementById('recordDefeatBtn');
         
@@ -189,14 +191,14 @@
         let contractInterface;
         let currentUserTokenId = null;
 
-        // --- Game State --- Added
+        // --- Game State ---
         let targetNumber = 0;
         let timeLeft = 0;
         let timerInterval = null;
         let gameActive = false;
         let playerWon = false;
 
-        // --- Core Wallet Logic (Unchanged from sample) ---
+        // --- Core Wallet Logic ---
         
         async function connectWallet() {
             if (typeof window.ethereum === 'undefined') { return showMessage('MetaMask is not installed!', 'error'); }
@@ -233,30 +235,33 @@
             }
         }
 
+        // Updated Network Check for Mainnet
         async function checkAndSwitchNetwork() {
             try {
                 const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-                if (chainId !== fujiChainId) {
-                    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: fujiChainId }] });
+                if (chainId !== avaxChainId) { // Use mainnet chain ID
+                    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: avaxChainId }] }); // Switch to mainnet
                 }
             } catch (switchError) {
-                if (switchError.code === 4902) { await addFujiNetwork(); } 
-                else { showMessage('Please switch to Fuji Testnet in MetaMask.', 'error'); }
+                if (switchError.code === 4902) { await addAvaxNetwork(); } // Try adding mainnet
+                else { showMessage('Please switch to Avalanche C-Chain in MetaMask.', 'error'); } // Updated message
             }
         }
 
-        async function addFujiNetwork() {
+        // Updated Add Network for Mainnet
+        async function addAvaxNetwork() {
             try {
                 await window.ethereum.request({
                     method: 'wallet_addEthereumChain',
                     params: [{
-                        chainId: fujiChainId, chainName: 'Avalanche Fuji C-Chain',
+                        chainId: avaxChainId, // Mainnet ID
+                        chainName: 'Avalanche C-Chain', // Mainnet Name
                         nativeCurrency: { name: 'AVAX', symbol: 'AVAX', decimals: 18 },
-                        rpcUrls: ['https://api.avax-test.network/ext/bc/C/rpc'],
-                        blockExplorerUrls: [fujiExplorerUrl]
+                        rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'], // Mainnet RPC
+                        blockExplorerUrls: [avaxExplorerUrl] // Mainnet Explorer
                     }],
                 });
-            } catch (addError) { showMessage('Could not add Fuji network.', 'error'); }
+            } catch (addError) { showMessage('Could not add Avalanche C-Chain network.', 'error'); } // Updated message
         }
 
         // --- Game Interaction Logic ---
@@ -290,7 +295,6 @@
 
         /**
          * Handles the minting of a new Scorecard NFT.
-         * Follows the sample's `handleMint` pattern exactly.
          */
         async function handleMint() {
             if (!contractInterface) return;
@@ -310,7 +314,6 @@
                 const receipt = await waitForTransaction(txHash);
 
                 if (receipt.status === '0x1') {
-                    // Try to find the minted token ID from the event (like sample's 'Transfer' log)
                     const eventTopic = contractInterface.getEventTopic("ScorecardMinted");
                     const mintLog = receipt.logs.find(log =>
                         log.address.toLowerCase() === contractAddress.toLowerCase() &&
@@ -321,33 +324,30 @@
                     let tokenIdMsg = "";
                     if (mintLog) {
                         const tokenId = ethers.BigNumber.from(mintLog.topics[2]).toString();
-                        currentUserTokenId = tokenId; // Store it
+                        currentUserTokenId = tokenId;
                         tokenIdMsg = ` Your new Scorecard is Token ID: ${tokenId} 🎉`;
                     }
                     
                     showMessage(`Mint successful!${tokenIdMsg}`, 'success', txHash);
                     
-                    // Add delay before refreshing UI
                     setTimeout(() => {
-                        checkUserMintStatus(currentAccount); // This will hide mint and show scorecard
+                        checkUserMintStatus(currentAccount);
                         setLoading(false, [mintBtn]);
                     }, 2500);
 
                 } else { 
                     showMessage('Transaction failed. Please try again.', 'error', txHash);
-                    setLoading(false, [mintBtn]); // Turn off loading on failure
+                    setLoading(false, [mintBtn]);
                 }
             } catch (error) {
                 if (error.code === 4001) { showMessage('Transaction cancelled.', 'error'); } 
                 else { showMessage('An error occurred.', 'error'); console.error(error); }
-                setLoading(false, [mintBtn]); // Turn off loading on error
+                setLoading(false, [mintBtn]);
             }
-            // setLoading(false) removed from here for success case (handled in timeout)
         }
 
         /**
-         * Loads the user's scorecard data using getScorecardId and getScores.
-         * Replaces the sample's `handleLookup`.
+         * Loads the user's scorecard data.
          */
         async function handleLoadScorecard() {
             if (!contractInterface || !currentAccount) return;
@@ -356,9 +356,7 @@
             scorecardDisplay.classList.add('hidden');
 
             try {
-                // 1. Get Token ID
                 let tokenId;
-                // Use stored ID if we have it, otherwise fetch it
                 if (currentUserTokenId) {
                     tokenId = currentUserTokenId;
                 } else {
@@ -370,20 +368,17 @@
                 if (tokenId === '0') {
                     showMessage('No scorecard found for your wallet.', 'error');
                     setLoading(false, [loadScorecardBtn]);
-                    // This shouldn't happen if checkUserMintStatus worked, but good to have
                     mintContainer.classList.remove('hidden');
                     scorecardContainer.classList.add('hidden');
                     return;
                 }
 
-                currentUserTokenId = tokenId; // Store it
+                currentUserTokenId = tokenId;
 
-                // 2. Get Scores
                 const statsData = contractInterface.encodeFunctionData("getScores", [tokenId]);
                 const statsHex = await window.ethereum.request({ method: 'eth_call', params: [{ to: contractAddress, data: statsData }, 'latest'] });
                 const stats = contractInterface.decodeFunctionResult("getScores", statsHex);
 
-                // 3. Update UI
                 cardTokenId.textContent = tokenId;
                 easyWins.textContent = stats[0].wins.toString();
                 easyLosses.textContent = stats[0].losses.toString();
@@ -402,35 +397,33 @@
             setLoading(false, [loadScorecardBtn]);
         }
         
-        // --- NEW Game Logic Functions ---
+        // --- Game Logic Functions ---
 
         /**
          * Starts the number guessing game.
          */
         function handleStartPuzzle() {
-            if (gameActive) return; // Don't start if already active
+            if (gameActive) return;
 
-            const difficulty = parseInt(difficultySelect.value); // 0=Easy, 1=Medium, 2=Hard
+            const difficulty = parseInt(difficultySelect.value);
             gameActive = true;
             playerWon = false;
-            targetNumber = Math.floor(Math.random() * 100) + 1; // Random number 1-100
-            console.log("Target Number (for testing):", targetNumber); // For testing
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            console.log("Target Number (for testing):", targetNumber);
 
-            // Set time limit based on difficulty - UPDATED TIMES
             if (difficulty === 0) timeLeft = 60;  // Easy: 1 minute
             else if (difficulty === 1) timeLeft = 35; // Medium: 35 seconds
             else timeLeft = 15; // Hard: 15 seconds
 
-            // Update UI
             puzzleArea.classList.remove('hidden');
-            startArea.classList.add('hidden'); // Hide start button/select
-            guessControl.classList.remove('hidden'); // Show guess input/button
-            resultButtons.classList.add('hidden'); // Hide result buttons
+            startArea.classList.add('hidden');
+            guessControl.classList.remove('hidden');
+            resultButtons.classList.add('hidden');
             gameFeedback.textContent = 'Guess a number between 1 and 100!';
-            guessInput.value = ''; // Clear previous guess
+            guessInput.value = '';
             guessInput.disabled = false;
             guessBtn.disabled = false;
-            difficultySelect.disabled = true; // Disable changing difficulty during game
+            difficultySelect.disabled = true;
 
             showMessage('Game started! Good luck.', 'info');
             startTimer();
@@ -440,18 +433,18 @@
          * Starts and manages the game timer.
          */
         function startTimer() {
-            if (timerInterval) clearInterval(timerInterval); // Clear any existing timer
+            if (timerInterval) clearInterval(timerInterval);
 
-            updateTimerDisplay(); // Initial display
+            updateTimerDisplay();
 
             timerInterval = setInterval(() => {
                 timeLeft--;
                 updateTimerDisplay();
 
                 if (timeLeft <= 0) {
-                    endGame(false); // Player lost (time ran out)
+                    endGame(false);
                 }
-            }, 1000); // Update every second
+            }, 1000);
         }
 
         /**
@@ -478,14 +471,14 @@
             }
 
             if (guess === targetNumber) {
-                endGame(true); // Player won
+                endGame(true);
             } else if (guess < targetNumber) {
                 gameFeedback.textContent = `Higher than ${guess}!`;
             } else {
                 gameFeedback.textContent = `Lower than ${guess}!`;
             }
 
-            guessInput.value = ''; // Clear input for next guess
+            guessInput.value = '';
         }
 
          /**
@@ -494,13 +487,12 @@
         function endGame(didWin) {
             gameActive = false;
             playerWon = didWin;
-            clearInterval(timerInterval); // Stop the timer
+            clearInterval(timerInterval);
 
-            // Update UI
             guessInput.disabled = true;
             guessBtn.disabled = true;
-            difficultySelect.disabled = false; // Re-enable difficulty select
-            resultButtons.classList.remove('hidden'); // Show result buttons
+            difficultySelect.disabled = false;
+            resultButtons.classList.remove('hidden');
 
             if (didWin) {
                 gameFeedback.textContent = `Correct! The number was ${targetNumber}. Claim your victory! 🎉`;
@@ -509,12 +501,12 @@
             } else {
                 gameFeedback.textContent = `Time's up! The number was ${targetNumber}. Record your defeat.`;
                  timerDisplay.classList.remove('text-green-400');
-                 timerDisplay.classList.add('text-red-400'); // Ensure it's red on loss
+                 timerDisplay.classList.add('text-red-400');
             }
         }
 
         /**
-         * Resets the game UI elements to their initial state.
+         * Resets the game UI elements.
          */
         function resetGameUI() {
              if (timerInterval) clearInterval(timerInterval);
@@ -527,25 +519,20 @@
              gameFeedback.textContent = '';
              timerDisplay.textContent = '0:00';
              timerDisplay.classList.remove('text-green-400');
-             timerDisplay.classList.add('text-red-400'); // Default timer color
+             timerDisplay.classList.add('text-red-400');
              difficultySelect.disabled = false;
              guessInput.value = '';
              guessInput.disabled = false;
              guessBtn.disabled = false;
         }
 
-        // --- END of NEW Game Logic Functions ---
-
         /**
          * Handles recording a win or loss via blockchain transaction.
-         * Modified to check game state.
          */
         async function handleGameAction(actionType) {
-            // Ensure game is over before allowing recording
             if (gameActive) {
                  return showMessage('Finish the current game before recording.', 'error');
             }
-             // Ensure the action matches the game outcome (optional but good practice)
             if ((actionType === 'win' && !playerWon) || (actionType === 'loss' && playerWon)) {
                  return showMessage(`Cannot record a ${actionType} when you ${playerWon ? 'won' : 'lost'}.`, 'error');
             }
@@ -555,7 +542,7 @@
             }
 
             const functionName = actionType === 'win' ? 'claimVictory' : 'recordDefeat';
-            const difficulty = difficultySelect.value; // Get the difficulty the game was played on
+            const difficulty = difficultySelect.value;
 
             setLoading(true, [claimVictoryBtn, recordDefeatBtn]);
             showMessage(`Recording ${actionType}... Confirm in wallet.`, 'info');
@@ -573,12 +560,11 @@
 
                 if (receipt.status === '0x1') {
                     showMessage(`Your ${actionType} has been recorded! Refreshing scores...`, 'success', txHash);
-                    // Add delay before refreshing UI
                     setTimeout(() => {
-                        handleLoadScorecard(); // Refresh scorecard display
-                        resetGameUI(); // Reset the game area
+                        handleLoadScorecard();
+                        resetGameUI();
                         setLoading(false, [claimVictoryBtn, recordDefeatBtn]);
-                    }, 2500); // 2.5 second delay
+                    }, 2500);
                 } else { 
                     showMessage('Transaction failed. Please try again.', 'error', txHash);
                     setLoading(false, [claimVictoryBtn, recordDefeatBtn]);
@@ -588,11 +574,10 @@
                 else { showMessage('An error occurred.', 'error'); console.error(error); }
                 setLoading(false, [claimVictoryBtn, recordDefeatBtn]);
             }
-            // setLoading(false) removed from here for success case
         }
 
 
-        // --- Utility Functions (Unchanged from sample) ---
+        // --- Utility Functions ---
 
         function waitForTransaction(txHash) {
             return new Promise((resolve) => {
@@ -625,6 +610,7 @@
             }
         }
 
+        // Updated showMessage to use mainnet explorer
         function showMessage(msg, type = 'info', txHash = null) {
             let colorClass = 'text-gray-300';
             if (type === 'success') colorClass = 'text-green-400';
@@ -632,7 +618,7 @@
             
             let html = msg;
             if (txHash) {
-                html += ` <a href="${fujiExplorerUrl}/tx/${txHash}" target="_blank" rel="noopener noreferrer" class="font-bold underline text-blue-400">View on Snowtrace</a>`;
+                html += ` <a href="${avaxExplorerUrl}/tx/${txHash}" target="_blank" rel="noopener noreferrer" class="font-bold underline text-blue-400">View on Snowtrace</a>`; // Use mainnet explorer URL
             }
             
             messageTextEl.innerHTML = html;
@@ -666,14 +652,12 @@
         mintBtn.addEventListener('click', handleMint);
         loadScorecardBtn.addEventListener('click', handleLoadScorecard);
         startPuzzleBtn.addEventListener('click', handleStartPuzzle);
-        guessBtn.addEventListener('click', handleGuess); // Added listener for guess button
-         // Add listener for Enter key on guess input
+        guessBtn.addEventListener('click', handleGuess);
         guessInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 handleGuess();
             }
         });
-
 
         claimVictoryBtn.addEventListener('click', () => handleGameAction('win'));
         recordDefeatBtn.addEventListener('click', () => handleGameAction('loss'));
